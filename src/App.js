@@ -15,13 +15,15 @@ class App extends Component {
     return (
       <div>
         {number}
+
       </div>
     );
   }
 }
 const mapStateToPRops = (state) => ({
-  yetAnother: 'property',
-  number: state.number,
-  done: state.number,
+
+  number: state.number.number,
+  done: state.number.done,
+  state: state,
 })
 export default connect(mapStateToPRops)(App);

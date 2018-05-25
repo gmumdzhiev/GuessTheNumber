@@ -1,26 +1,22 @@
 const initialState = {
-
+  done: false,
+  guesses: [],
+  number: 5,
 }
+export const guess = (number) => ({
+  type: 'GUESS',
+  payload: number,
+})
 
-export const addNumber = (number) => ({
-  type: 'ADD_NUMBER',
-  payload: number,
-})
-export const removeNumber = (number) => ({
-  type: 'REMOVE_NUMBER',
-  payload: number,
-})
+window.guess = guess
 
 export const reducer = (state = initialState, action) => {
-  console.log('action', action)
-  if (action.type === 'ADD_NUMBER') {
+
+  if (action.type === 'GUESS') {
     return {
-      numbers: [action.payload, ...state.numbers]
-    }
-  }
-  if (action.type === 'REMOVE_NUMBER') {
-    return {
-      numbers: state.numbers.filter(number => number !== action.payload),
+      ...state,
+      done: action.payload === state.number,
+      guesses: [action.payload, ...state.guesses],
     }
   }
   return state
