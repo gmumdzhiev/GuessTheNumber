@@ -5,7 +5,7 @@ const initialState = {
 }
 export const guess = (number) => ({
   type: 'GUESS',
-  payload: number,
+  payload: parseInt(number, 10),
 })
 
 window.guess = guess
