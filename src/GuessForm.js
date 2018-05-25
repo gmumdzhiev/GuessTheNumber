@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { guess } from './store/number.js'
+import { guess } from './store/number'
 
 class GuessForm extends PureComponent {
   render() {
@@ -10,32 +10,28 @@ class GuessForm extends PureComponent {
 
     return (
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Fill in your Number:</label>
-          <div>
-            <Field
-              name="number"
-              component="input"
-              type="number"
-            />
-          </div>
-        </div>
-        <div>
-          <button type="submit">
-            GUESS?
-       </button>
-        </div>
+        <Field
+          name="number"
+          component="input"
+          type="number"
+        />
+        <button type="submit">
+          Guess !
+        </button>
       </form>
     )
   }
 }
 
 const onSubmit = ({ number }, dispatch) => {
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   dispatch(guess(number))
 }
 
 export default reduxForm({
   form: 'guess', // a unique identifier for this form
   onSubmit, // same as onSubmit: onSubmit
-
+  initialValues: {
+    number: 8,
+  }
 })(GuessForm)

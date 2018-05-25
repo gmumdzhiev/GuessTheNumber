@@ -1,29 +1,45 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import './App.css';
-import GuessForm from './GuessForm.js'
+import { connect } from 'react-redux'
+import { newGame } from './store/number'
+import GuessForm from './GuessForm'
 class App extends Component {
+  componentWillMount() {
+    this.props.dispatch(newGame())
+  }
+
   render() {
     const {
       number,
       done,
+      guesses,
     } = this.props
 
     if (done) {
-      return <div> You have Won ! </div>
+      return <div>You have won!</div>
     }
+
     return (
       <div>
-        {number}
         <GuessForm />
+        <ul>
+          {guesses.map(guess => (
+            <li key={guess}>
+              {guess}
+              {guess < number ? " TOO LOW" : ''}
+              {guess > number ? " TOO HIGH" : ''}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
 }
-const mapStateToPRops = (state) => ({
 
+const mapStateToProps = (state) => ({
   number: state.number.number,
   done: state.number.done,
-  state: state,
+  guesses: state.number.guesses,
 })
-export default connect(mapStateToPRops)(App);
+
+export default connect(mapStateToProps)(App);
