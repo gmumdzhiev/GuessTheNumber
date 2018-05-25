@@ -1,5 +1,15 @@
 import { createStore } from 'redux'
-import { reducer } from 'redux-form'
 
+
+const initialState = {
+  guesses: [],
+  number: 5,
+}
+
+const reducer = (state = initialState, action) => {
+  console.log('action', action)
+  return state
+}
 const store = createStore(reducer)
+
 export default store
