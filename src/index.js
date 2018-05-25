@@ -4,6 +4,11 @@ import { Provider } from 'react-redux';
 import App from './App.js';
 import store from './store/store.js'
 
+console.log(store)
+
+window.foo = store
+
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
