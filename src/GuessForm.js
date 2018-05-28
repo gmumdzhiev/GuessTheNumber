@@ -10,6 +10,7 @@ class GuessForm extends PureComponent {
 
     return (
       <form onSubmit={handleSubmit}>
+        <p>Guess a number between 1 - 100.</p>
         <Field
           name="number"
           component="input"
